@@ -148,7 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- list/detail pages -->
       <iron-pages selected="[[_pageData.page]]" attr-for-selected="name">
 
-        <RPC-list name="home" recipes="[[recipes]]">
+        <RPC-list name="home" recipes="[[personajes]]">
           <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
         </RPC-list>
 
@@ -167,7 +167,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <RPC-verPersonaje
             id="detailView"
             name="detail"
-            recipe="[[_getRecipe(recipes, _idData.id)]]"></RPC-verPersonaje>
+            personajeId="[[_idData.id)]]"></RPC-verPersonaje>
 
       </iron-pages>
 
@@ -183,7 +183,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
-      recipes: Object,
+      personajes: Object,
 
       _route: Object,
 
