@@ -116,6 +116,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     data="{{personaje}}">
     </firebase-document>
     
+    
+    <firebase-query
+    id="query"
+    path="/personajes/habilidades"
+    data="{{personaje.habilidades}}">
+    </firebase-query>
+    
     <!-- main panel -->
     <app-header-layout>
 
@@ -130,27 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <div main-title></div>
 
-          <paper-menu-button horizontal-align="right">
-            <paper-icon-button icon="app:more-vert" class="dropdown-trigger" alt="menu"></paper-icon-button>
-            <paper-listbox class="dropdown-content">
-              <paper-icon-item>
-                <iron-icon icon="app:share" item-icon></iron-icon>
-                Tweet recipe
-              </paper-icon-item>
-              <paper-icon-item>
-                <iron-icon icon="app:email" item-icon></iron-icon>
-                Email recipe
-              </paper-icon-item>
-              <paper-icon-item>
-                <iron-icon icon="app:textsms" item-icon></iron-icon>
-                Message recipe
-              </paper-icon-item>
-              <paper-icon-item>
-                <iron-icon icon="app:group" item-icon></iron-icon>
-                Share on Facebook
-              </paper-icon-item>
-            </paper-listbox>
-          </paper-menu-button>
+          
         </app-toolbar>
 
       </app-header>
@@ -164,13 +151,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <h4>Habilidades</h4>
 
-           <!-- <template is="dom-repeat" items="{{personajes.habilidades}}">
+           <template is="dom-repeat" items="{{personaje.habilidades}}">
               <div class="ingredient-item">
                 <div class="ingredient-amount">{{item.amount}}</div>
                 <div class="ingredient-name">{{item.$key}}</div>
               </div>
             </template>
--->
 
           </div>
         </paper-card>
@@ -183,9 +169,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-
+  
   Polymer({
-
+    
     is: 'RPC-verPersonaje',
 
     properties: {
@@ -206,7 +192,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     __personajeChanged: function(personaje) {
-      if (personaje) {
+        if (personaje) {
         this.style.backgroundImage = 'url(' + personaje.imagenUrl + ')';
       }
     },

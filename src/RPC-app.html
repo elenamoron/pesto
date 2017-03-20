@@ -31,6 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 
 <link rel="import" href="RPC-verPersonaje.html">
+<link rel="import" href="RPC-crearPersonajes.html">
 <link rel="import" href="RPC-list.html">
 <link rel="import" href="app-icons.html">
 
@@ -106,10 +107,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button raised on-tap="abrirVentanaLogin">Entrar como usuario</paper-button>
         </div>
 
-
-
-
-
     <app-drawer-layout responsive-width="1280px" name="logado">
 
       <!-- nav panel -->
@@ -134,7 +131,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               on-iron-activate="_drawerSelected">
             <paper-item name="home">Home</paper-item>
             <paper-item name="favorites">Favorites</paper-item>
-            <paper-item name="saved">Saved</paper-item>
+            <paper-item name="saved">Crear Personajes</paper-item>
             <paper-item name="trending">Trending</paper-item>
           </paper-listbox>
 
@@ -157,7 +154,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </RPC-list>
 
         <RPC-list name="saved">
-          <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
+            <paper-icon-button icon="app:menu" drawer-toggle>
+                <a href="#/insert" class="card-container"></a>
+            </paper-icon-button>
         </RPC-list>
 
         <RPC-list name="trending">
@@ -167,7 +166,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <RPC-verPersonaje
             id="detailView"
             name="detail"
-            personajeId="[[_idData.id)]]"></RPC-verPersonaje>
+            personajeId="[[_idData.id]]">
+        </RPC-verPersonaje>
+          
+        <RPC-crearPersonajes
+            id="insertView"
+            name="insert">
+        </RPC-crearPersonajes>
 
       </iron-pages>
 
@@ -176,7 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-
+      
   Polymer({
 
     is: 'RPC-app',
@@ -213,11 +218,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _isDetailPage: function(page) {
       return page === 'detail';
     },
+    _isInsertPage: function(page) {
+      return page === 'insert';
+    },
 
     _getRecipe: function() {
-      if (this.recipes && this._idData.id) {
-        for (var i = 0; i < this.recipes.length; ++i) {
-          var r = this.recipes[i];
+      if (this.personajes && this._idData.id) {
+        for (var i = 0; i < this.personajes.length; ++i) {
+          var r = this.personajes[i];
           if (r.id === this._idData.id) {
             return r;
           }
@@ -241,6 +249,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _salirUsuario: function(){
         console.log(this.user);
         this.$.auth.signOut();
+    },
+    
+    crearPersonaje: function(){
+        
     }
 
   });

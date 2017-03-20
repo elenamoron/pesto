@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="RPC-crearPersonajes.html">
 
 <dom-module id="RPC-list">
   <template>
@@ -171,8 +172,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --><a href="#/detail/{{item.$key}}" class="card-container">
             <paper-card image="{{item.imagenUrl}}">
               <div class="card-content">
-                <h2>{{item.name}}</h2>
-                <p>By <span>{{item}}</span></p>
+                  <h2>{{item.name}}</h2>
               </div>
             </paper-card>
           </a><!-- No empty text node
@@ -182,6 +182,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header-layout>
 
     <paper-fab icon="app:create"></paper-fab>
+    
   </template>
 
   <script>
@@ -191,7 +192,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'RPC-list',
 
     properties: {
-      recipes: Object
+      personajes: Object
     },
     
     ayuda: function(){
