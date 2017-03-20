@@ -1,0 +1,64 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
+
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+
+<doc-module id="RPC-crearPersonajes">
+    
+    <template>
+        <style>
+    
+        </style>
+        <!--<firebase-collection id="ref"
+            location="https://sesion2bbdd.firebaseio.com/personajes"
+            data="{{data}}">
+        </firebase-collection>
+        <firebase-auth 
+            id="auth" 
+            location="https://sesion2bbdd.firebaseio.com/"
+            user="{{user}}" provider="google" >
+        </firebase-auth>
+    -->
+       <paper-checkbox>Hello World!</paper-checkbox>
+    </template>
+    <script>
+        Polymer({
+            is:'RPC-crearPersonajes',
+            
+        properties: {
+          personaje: Object,
+           
+          name: String,
+           
+          habilidades: Object
+          
+        }
+        /*crearPersonaje:function(user,name,habilidades){
+            var ref = new Firebase("https://sesion2bbdd.firebaseio.com/personajes"+name);
+            ref.set(user);
+            ref.set(habilidades);
+        },
+        submitPersonaje: function() {
+          this.$.ref.add(this.personaje);
+        }*/
+        });
+    </script>
+</doc-module>
