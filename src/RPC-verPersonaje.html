@@ -112,15 +112,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <firebase-document
-    path="/personajes/{{personajeId}}"
+    path="/personajes/{{personajeid}}"
     data="{{personaje}}">
     </firebase-document>
     
     
     <firebase-query
     id="query"
-    path="/personajes/{{personajeId}}/habilidades"
-    data="{{personaje.habilidades}}">
+    path="/personajes/{{personajeid}}/habilidades"
+    data="{{habilidades}}">
     </firebase-query>
     
     <!-- main panel -->
@@ -151,12 +151,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <h4>Habilidades</h4>
 
-           <template is="dom-repeat" items="{{personaje.habilidades}}">
+           <template is="dom-repeat" items="{{habilidades}}">
               <div class="ingredient-item">
-                <div class="ingredient-amount">{{item.amount}}</div>
-                <div class="ingredient-name">{{item.$key}}</div>
+                <div class="ingredient-name">{{item.$val}}</div>
               </div>
             </template>
+            <h4> Profesión</h4>
+            <p>{{personaje.profesion}}</p>
 
           </div>
         </paper-card>
@@ -175,13 +176,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
-      personajeId:{
+      personajeid:{
           type: String
       },
       personaje: {
         type: Object,
         observer: '__personajeChanged'
       },
+      // : Object,
 
       __favorite: {
         type: Boolean,
@@ -190,8 +192,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     },
     
+    
     __personajeChanged: function(personaje) {
-        console.log(this.personajeId);
+        //console.log(this.habilidades);
+        console.log('----');
+        console.log(this.personaje.habilidades);
         if (personaje) {
         this.style.backgroundImage = 'url(' + personaje.imagenUrl + ')';
       }
@@ -203,9 +208,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     __computeFavIcon: function(favorite) {
       return favorite ? 'app:favorite' : 'app:favorite-border';
-    },
-    ayuda: function(){
-        console.log(this.personajeId);
     }
 
   });

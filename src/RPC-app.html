@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     .avatar-container .image {
-      
+      /*background-image: url('[[user.photoURL]]');*/
       background-size: contain;
       border-radius: 50%;
       height: 100%;
@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       --paper-icon-button-ink-color: white;
     }
     </style>
-
+    
     <firebase-auth id="auth" user="{{user}}" provider="google" >
     </firebase-auth>
     
@@ -145,7 +145,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <RPC-verPersonaje
             id="detailView"
             name="detail"
-            personajeId="{{_idData.id}}">
+            personajeid="{{_idData.id}}">
         </RPC-verPersonaje>
           
         <RPC-crearPersonajes
