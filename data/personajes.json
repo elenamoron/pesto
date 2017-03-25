@@ -1,0 +1,25 @@
+{
+  "personajes" : {
+    "helen" : {
+      
+"gender" : "female",
+      "imagenUrl" : "https://k32.kn3.net/taringa/4/0/6/1/7/8/5/ryu_esponja/33D.jpg?3894",
+ 
+     "name" : "helen"
+,
+	"habilidades":{
+		"habilidad1":"correr",
+		"habilidad2":"pegar"}    },
+    "james" : {
+      "gender" : "male",
+  
+    "imagenUrl" : "http://pre09.deviantart.net/f646/th/pre/i/2014/204/8/0/james_rodriguez_by_empix-d7rwuqa.jpg",
+ 
+     "name" : "james"
+ ,
+
+	"habilidades":{
+		"habilidad1":"correr",
+		"habilidad2":"pegar"}   }
+  }
+}
