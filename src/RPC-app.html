@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     .avatar-container .image {
-      background-image: url('[[user.photoURL]]');
+      
       background-size: contain;
       border-radius: 50%;
       height: 100%;
@@ -83,10 +83,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
 
-    <firebase-app auth-domain="sesion2bbdd.firebaseapp.com"
-    database-url="https://sesion2bbdd.firebaseio.com/"
-    api-key="AIzaSyCgyJ8tk3Z-y-XrzIJFwW00T_TFZW3GggE">
-    </firebase-app>
     <firebase-auth id="auth" user="{{user}}" provider="google" >
     </firebase-auth>
     
@@ -130,9 +126,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               attr-for-selected="name"
               on-iron-activate="_drawerSelected">
             <paper-item name="home">Home</paper-item>
-            <paper-item name="favorites">Favorites</paper-item>
-            <paper-item name="saved">Crear Personajes</paper-item>
-            <paper-item name="trending">Trending</paper-item>
           </paper-listbox>
 
         </app-header-layout>
@@ -145,33 +138,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- list/detail pages -->
       <iron-pages selected="[[_pageData.page]]" attr-for-selected="name">
 
-        <RPC-list name="home" recipes="[[personajes]]">
+        <RPC-list name="home" personajes="{{personajes}}" user="{{user}}">
           <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
         </RPC-list>
-
-        <RPC-list name="favorites">
-          <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
-        </RPC-list>
-
-        <RPC-list name="saved">
-            <paper-icon-button icon="app:menu" drawer-toggle>
-                <a href="#/insert" class="card-container"></a>
-            </paper-icon-button>
-        </RPC-list>
-
-        <RPC-list name="trending">
-          <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
-        </RPC-list>
-
+          
         <RPC-verPersonaje
             id="detailView"
             name="detail"
-            personajeId="[[_idData.id]]">
+            personajeId="{{_idData.id}}">
         </RPC-verPersonaje>
           
         <RPC-crearPersonajes
             id="insertView"
-            name="insert">
+            name="insert"
+            user="{{user}}">
         </RPC-crearPersonajes>
 
       </iron-pages>
@@ -220,18 +200,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     _isInsertPage: function(page) {
       return page === 'insert';
-    },
-
-    _getRecipe: function() {
-      if (this.personajes && this._idData.id) {
-        for (var i = 0; i < this.personajes.length; ++i) {
-          var r = this.personajes[i];
-          if (r.id === this._idData.id) {
-            return r;
-          }
-        }
-      }
-      return null;
     },
 
     _drawerSelected: function() {

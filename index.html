@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#00AA8D">
-
+  <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
   <title>Pesto by Polymer</title>
 
   <link rel="manifest" href="manifest.json">
@@ -46,8 +46,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind">
 
-    <iron-ajax url="data/personajes.json" auto last-response="{{personajes}}"></iron-ajax>
-    <RPC-app personajes="[[personajes]]"></RPC-app>
+    <firebase-app 
+        auth-domain="sesion2bbdd.firebaseapp.com"
+        database-url="https://sesion2bbdd.firebaseio.com/"
+        api-key="AIzaSyCgyJ8tk3Z-y-XrzIJFwW00T_TFZW3GggE">
+    </firebase-app>
+    <firebase-query
+    id="query"
+    path="/personajes"
+    data="{{personajes}}">
+    </firebase-query>
+    <RPC-app personajes="{{personajes}}"></RPC-app>
 
   </template>
 

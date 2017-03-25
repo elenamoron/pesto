@@ -112,16 +112,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <firebase-collection id="ref"
-        location="https://sesion2bbdd.firebaseio.com/personajes"
-        data="{{personajes}}">
-    </firebase-collection>
-    
-    <firebase-query
-    id="query"
-    path="/personajes/habilidades"
-    data="{{personaje.habilidades}}">
-    </firebase-query>
+    <firebase-document
+    id="crear"
+    path="/personajes/{{personajeId}}"
+    data="{{personaje}}">
+    </firebase-document>
     
     <!-- main panel -->
     <app-header-layout>
@@ -140,26 +135,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </app-header>
 
-      <div class="card-container">
+      <div align="center">
           <h1>Crear personaje</h1>
           <form is="iron-form" id="form" method="post" action="">
-              Introduzca el nombre del personaje: <input name="name" type="text" /></br>
+              Introduzca el nombre del personaje: <input id="name" type="text" /></br>
               Sexo:<br>
-              Femenino<input name="female" type="radio" /> Masculino <input name="male" type="radio" /><br>
+              Femenino<input id="female" value="female" type="radio" /> Masculino <input id="male" value="male" type="radio" /><br>
               Habilidades:<br>
-              <select name="habilidades">
-                  <option value="habilidad1">Correr</option>
-                  <option value="habilidad2">Pegar</option>
-                  <option value="habilidad3">Saltar</option>
+              <select multiple id="habilidades">
+                  <option value="correr">Correr</option>
+                  <option value="pegar">Pegar</option>
+                  <option value="saltar">Saltar</option>
+                  <option value="control del tiempo">Control de tiempo</option>
+                  <option value="regenerarse">Regenerarse</option>
+                  <option value="leer la mente">Leer la mente</option>
+                  <option value="congelar">Congelar</option>
+                  <option value="generar electricidad">Generar electricidad</option>
+                  <option value="fuerza">Fuerza</option>
+                  <option value="volar">Volar</option>
+                  <option value="super memoria">Super memoria</option>
+                  <option value="ver el futuro">Ver el futuro</option>
+                  <option value="telequinesis">Telequinesis</option>
+                  <option value="telepatia">Telepatia</option>
+                  <option value="termoquinesis">Termoquinesis</option>
+                  <option value="duplicarse">Duplicarse</option>
+                  <option value="invisibilidad">Invisibilidad</option>
+                  <option value="vision nocturna">Visión nocturna</option>
+                  <option value="vision rayos x">Visión rayos X</option>
+                  <option value="inmortabilidad">Inmortabilidad</option>
+                  <option value="desintegracion">Desintegración</option>
               </select><br>
               Profesión:<br>
-              <select name="profesion">
-                  <option >Cantante</option>
-                  <option >Profesor</option>
-                  <option >Sastre</option>
+              <select id="profesion">
+                  <option value="cantante">Cantante</option>
+                  <option value="profesor">Profesor</option>
+                  <option value="sastre">Sastre</option>
               </select><br>
               Imagen:<br>
-              <input name="imagenURL" type="text">
+              <input id="imagenURL" type="text">
               <br>
               <paper-button raised on-tap="_newPersonaje">Crear</paper-button>
           </form>
@@ -177,7 +190,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
 
-      data: Object
+      personaje: Object,
+      user: Object,
+      personajeId: String
 
     },
     crearPersonaje:{
@@ -186,9 +201,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     _newPersonaje:function(){
-        console.log(ref);    
-            ref.set(user);
-            ref.set(habilidades);
+        this.personajeId = document.getElementById('name').value;
+        this.personaje['name'] = document.getElementById('name').value;
+        if(document.getElementById('female').checked){
+            this.personaje['gender']= document.getElementById('female').value;
+        }
+        else{
+            this.personaje['gender']= document.getElementById('male').value;
+        }
+        var values = Array.prototype.slice.call(document.querySelectorAll('#habilidades option:checked'),0).map(function(v,i,a) { 
+            return v.value; 
+        });
+        this.personaje['habilidades'] = values;
+        this.personaje['imagenUrl'] = document.getElementById('imagenURL').value;
+        this.personaje['profesion'] = document.getElementById('profesion').value;
+        this.personaje['user'] = this.user.email;
+        this.$.crear.data = this.personaje;
+        this.$.crear.save('/personajes/',this.personajeId);
+        
         },
     submitPersonaje: function() {
           this.$.ref.add(this.personaje);

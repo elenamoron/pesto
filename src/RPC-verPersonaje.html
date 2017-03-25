@@ -119,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <firebase-query
     id="query"
-    path="/personajes/habilidades"
+    path="/personajes/{{personajeId}}/habilidades"
     data="{{personaje.habilidades}}">
     </firebase-query>
     
@@ -167,9 +167,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header-layout>
 
   </template>
-
   <script>
-  
+      
   Polymer({
     
     is: 'RPC-verPersonaje',
@@ -190,8 +189,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     },
-
+    
     __personajeChanged: function(personaje) {
+        console.log(this.personajeId);
         if (personaje) {
         this.style.backgroundImage = 'url(' + personaje.imagenUrl + ')';
       }
@@ -203,6 +203,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     __computeFavIcon: function(favorite) {
       return favorite ? 'app:favorite' : 'app:favorite-border';
+    },
+    ayuda: function(){
+        console.log(this.personajeId);
     }
 
   });
