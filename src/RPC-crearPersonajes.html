@@ -141,6 +141,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               Introduzca el nombre del personaje: <input id="name" type="text" /></br>
               Sexo:<br>
               Femenino<input id="female" value="female" type="radio" /> Masculino <input id="male" value="male" type="radio" /><br>
+              Rasgos fisicos<br>
+              Colo de piel: <input id="piel" type="text" /></br>
+              Color de ojos: <input id="ojos" type="text" /></br>
+              Color de pelo: <input id="pelo" type="text" /></br>
               Habilidades:<br>
               <select multiple id="habilidades">
                   <option value="correr">Correr</option>
@@ -192,7 +196,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       personaje: Object,
       user: Object,
-      personajeId: String
+      personajeid: String
 
     },
     crearPersonaje:{
@@ -201,8 +205,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     
     _newPersonaje:function(){
-        this.personajeId = document.getElementById('name').value;
+        this.personajeid = document.getElementById('name').value;
         this.personaje['name'] = document.getElementById('name').value;
+        this.personaje['piel'] = document.getElementById('piel').value;
+        this.personaje['ojos'] = document.getElementById('ojos').value;
+        this.personaje['pelo'] = document.getElementById('pelo').value;
         if(document.getElementById('female').checked){
             this.personaje['gender']= document.getElementById('female').value;
         }
@@ -217,7 +224,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.personaje['profesion'] = document.getElementById('profesion').value;
         this.personaje['user'] = this.user.email;
         this.$.crear.data = this.personaje;
-        this.$.crear.save('/personajes/',this.personajeId);
+        this.$.crear.save('/personajes/',this.personajeid);
         
         },
     submitPersonaje: function() {

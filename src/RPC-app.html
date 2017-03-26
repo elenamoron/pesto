@@ -42,8 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
     .avatar-container {
       position: relative;
-      border: 2px solid #00AA8D;
-      border-radius: 50%;
+      /*border: 2px solid #00AA8D;*/
+      /*border-radius: 50%;*/
       height: 90px;
       padding: 2px;
       width: 90px;
@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .avatar-container .image {
       /*background-image: url('[[user.photoURL]]');*/
       background-size: contain;
-      border-radius: 50%;
+      /*border-radius: 50%;*/
       height: 100%;
       width: 100%;
     }
@@ -111,7 +111,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <app-header fixed>
             <div class="avatar-container">
-              <div class="image"></div>
+                <div class="image">
+                    <img src='[[user.photoURL]]' heigth='100' width='100'/>
+                </div>
             </div>
             <div class="contact-info">
               <div class="name">[[user.displayName]]</div>
@@ -205,6 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _drawerSelected: function() {
       if (!this.$.drawer.persistent) this.$.drawer.close();
     },
+    
     
     _calculaLogado: function(usuario){
         return ((this.$.auth.user=="undefined" || this.$.auth.user == null)?"login":"logado");
